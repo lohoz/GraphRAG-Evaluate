@@ -2,7 +2,7 @@
 
 An Unbiased Evaluation Framework for GraphRAG
 
-<img src="./figures/evaluation.png">
+![evaluation](https://github.com/user-attachments/assets/f7ae1a3e-737c-4739-891d-6c24ee4420a0)
 
 ## RAGs
 
@@ -57,7 +57,7 @@ python ./process_data/insert.py \
 
 ### Generate Question
 
-<img src="./figures/generate_question.png">
+![generate_question](https://github.com/user-attachments/assets/b6e01dbc-398d-4501-95f6-735c1e987d9b)
 
 We use graph information of LightRag to generate questions.
 
