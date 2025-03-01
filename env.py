@@ -1,0 +1,2 @@
+BASEURL=""
+APIKEY=""
