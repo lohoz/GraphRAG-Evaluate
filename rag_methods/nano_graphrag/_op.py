@@ -1073,10 +1073,6 @@ Importance Score: {dp['score']}
     if query_param.only_need_context:
         return points_context
     
-
-    # #zqm
-    # with open("global_query.txt", "a") as f:
-    #     f.write(points_context + "\n")
     
     #eval
     if(query_param.expected_length == 0):

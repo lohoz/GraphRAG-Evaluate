@@ -29,7 +29,6 @@ class QueryParam:
     relations_max_tokens: int = field(default=3000)
     chunks_max_tokens: int = field(default=9000)
 
-    #zqm
     expected_length: int = field(default=0)
 
 
@@ -237,23 +236,6 @@ class BaseGraphRAG(Generic[GTEmbedding, GTHash, GTChunk, GTNode, GTEdge, GTId]):
                 )
                 answer = llm_response.answer
 
-            #zqm
-            # llm_response, _ = await format_and_send_prompt(
-            #     prompt_key="generate_response_query_with_references"
-            #     if params.with_references
-            #     else "generate_response_query_no_references",
-            #     llm=self.llm_service,
-            #     format_kwargs={
-            #         "query": query,
-            #         "context": context_str
-            #     },
-            #     response_model=TAnswer,
-            # )
-            # answer = llm_response.answer
-
-            # #zqm
-            # with open("fastgraphrag_output_context.txt", "a") as f:
-            #     f.write(context_str +"\n")
 
         return TQueryResponse[GTNode, GTEdge, GTHash, GTChunk](response=answer, context=context)
 

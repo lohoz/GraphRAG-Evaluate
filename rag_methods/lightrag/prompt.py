@@ -247,7 +247,6 @@ Add sections and commentary to the response as appropriate for the length and fo
 
 
 
-#zqm
 PROMPTS[
     "summarize_subgraph"
 ] ="""---Role---
@@ -272,62 +271,6 @@ Add sections and commentary to the response as appropriate for the length and fo
 """
 
 
-
-PROMPTS["zqm_keywords_extraction"] = """---Role---
-
-You are a helpful assistant tasked with identifying keywords in the user's query.
-
----Goal---
-
-Given the query, list the keywords of the query. Entity keywords need to be extracted directly from the query, that is, the extracted entity keywords must exist in the query. Relation keywords should not only extract the relationship in the query, but also pay attention to the central theme of the query and other macro concepts and overarching concepts.
-
----Instructions---
-
-- Output the keywords in JSON format.
-- The JSON should have two keys:
-  - "relation_keywords" for overarching concepts or themes.
-  - "entity_keywords" for specific entities or details in the query( must appeared in the query, If it is a name, you can extend it to the full name (if you are really sure)).
-
-######################
--Examples-
-######################
-Example 1:
-
-Query: "How does international trade influence global economic stability?"
-################
-Output:
-{{
-  "relation_keywords": ["Trade agreements", "Stability", "Economic impact"],
-  "entity_keywords": ["International trade", "Global economic stability"]
-}}
-#############################
-Example 2:
-
-Query: "What are the environmental consequences of deforestation on biodiversity?"
-################
-Output:
-{{
-  "relation_keywords":["Species extinction", "Habitat destruction", "Carbon emissions", "Ecosystem"],
-  "entity_keywords":  ["Environmental consequences", "Deforestation", "Biodiversity"]
-}}
-#############################
-Example 3:
-
-Query: "What is the role of education in reducing poverty?"
-################
-Output:
-{{
-  "relation_keywords": ["School access", "Literacy rates", "Job training", "Income inequality"],
-  "entity_keywords": ["Education", "Poverty reduction"]
-}}
-#############################
--Real Data-
-######################
-Query: {query}
-######################
-Output:
-
-"""
 
 PROMPTS[
     "filter_entity"
@@ -372,55 +315,6 @@ Query:{user_query}
 ######################
 Output:
 
-"""
-
-PROMPTS["zqm_rag_response_withlength"] = """---Role---
-
-You are a helpful assistant responding to questions about data in the tables provided.
-
-
----Goal---
-
-Generate a {expected_length} words response and format that responds to the user's question, summarizing all information in the input data tables appropriate for the response length and format, and incorporating any relevant general knowledge.
-The input data contains entity information, relationship information, path information between associated entities and text information related to user query.
-The path information is consist of direct path and other path, they describe a path from one node in the graph to another node. It is possible that there is no route information, In that case, just use the other information to generate your response.
-If you don't know the answer, just say so. Do not make anything up.
-Do not include information where the supporting evidence for it is not provided.
-The answer should be about {expected_length} words.
-
----Target response length and format---
-
-{expected_length} words , {response_type}
-
----Data tables---
-
-{context_data}
-
-Add sections and commentary to the response as appropriate for the length and format. Style the response in markdown.The answer should be about {expected_length} words.
-"""
-
-PROMPTS["zqm_rag_response"] = """---Role---
-
-You are a helpful assistant responding to questions about data in the tables provided.
-
-
----Goal---
-
-Generate a response to the user's question, summarizing all information in the input data tables appropriate for the response format, and incorporating any relevant general knowledge.
-The input data contains entity information, relationship information, path information between associated entities and text information related to user query.
-The path information is consist of direct path and other path, they describe a path from one node in the graph to another node. It is possible that there is no route information, In that case, just use the other information to generate your response.
-If you don't know the answer, just say so. Do not make anything up.
-Do not include information where the supporting evidence for it is not provided.
-
----Target response format---
-
-{response_type}
-
----Data tables---
-
-{context_data}
-
-Add sections and commentary to the response as appropriate for the format. Style the response in markdown.
 """
 
 

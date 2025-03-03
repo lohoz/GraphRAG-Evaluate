@@ -15,8 +15,7 @@ T = TypeVar("T")
 
 @dataclass
 class QueryParam:
-    #zqm
-    mode: Literal["local", "global", "hybrid", "naive","zqmsearch"] = "global"
+    mode: Literal["local", "global", "hybrid", "naive"] = "global"
     expected_length: int = 0
     only_need_context: bool = False
     route_ranking:bool = True
@@ -30,7 +29,6 @@ class QueryParam:
     # Number of tokens for the entity descriptions
     max_token_for_local_context: int = 4000
 
-    #zqm
     max_token_for_route_unit: int = 5000
 
 

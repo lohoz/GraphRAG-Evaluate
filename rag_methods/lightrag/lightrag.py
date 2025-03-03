@@ -16,9 +16,6 @@ from .operate import (
     global_query,
     hybrid_query,
     naive_query,
-    #zqm
-    zqmsearch_query,
-    zqmsearch_query_new,
 )
 
 
@@ -315,38 +312,6 @@ class LightRAG:
         loop = always_get_an_event_loop()
         return loop.run_until_complete(self.aquery(query, param))
     
-    #zqm
-    def zqmquery(self, query: str,  workingdir: str ,param: QueryParam = QueryParam()):
-        loop = always_get_an_event_loop()
-        return loop.run_until_complete(self.zqmaquery(query, workingdir, param))
-    #zqm
-    async def zqmaquery(self, query: str, workingdir: str, param: QueryParam = QueryParam()):
-        if param.mode == "zqmsearch":
-            response = await zqmsearch_query(
-                query,
-                workingdir,
-                self.chunk_entity_relation_graph,
-                self.entities_vdb,
-                self.relationships_vdb,
-                self.text_chunks,
-                param,
-                asdict(self),
-            )
-        elif param.mode == "zqmsearch_new":
-            response = await zqmsearch_query_new(
-                query,
-                workingdir,
-                self.chunk_entity_relation_graph,
-                self.entities_vdb,
-                self.relationships_vdb,
-                self.text_chunks,
-                param,
-                asdict(self),
-            )
-        else:
-            raise ValueError(f"Unknown mode {param.mode}")
-        await self._query_done()
-        return response
 
 
     async def aquery(self, query: str, param: QueryParam = QueryParam()):
